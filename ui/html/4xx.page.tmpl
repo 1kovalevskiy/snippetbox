@@ -1,0 +1,13 @@
+{{template "base" .}}
+
+{{define "title"}}Неправильный запрос{{end}}
+
+{{define "main"}}
+    {{with .Errors}}
+    <h2>Ошибка {{.Code}}</h2>
+    <div class='snippet'>
+        <strong>{{.Message}}</strong>
+    </div>
+    {{end}}
+
+{{end}}

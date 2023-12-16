@@ -4,16 +4,15 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/joho/godotenv"
 	"github.com/ilyakaznacheev/cleanenv"
+	"github.com/joho/godotenv"
 )
-
 
 type (
 	Config struct {
-		App  `yaml:"app"`
-		HTTP `yaml:"http"`
-		MySQL   `yaml:"mysql"`
+		App   `yaml:"app"`
+		HTTP  `yaml:"http"`
+		MySQL `yaml:"mysql"`
 	}
 
 	App struct {
@@ -26,17 +25,16 @@ type (
 	}
 
 	MySQL struct {
-		URL   string `env:"MYSQL_URL"`
+		Timeout string `env-required:"true" yaml:"timeout" env:"MYSQL_TIMEOUT"`
+		URL     string `env:"MYSQL_URL"`
 	}
 )
 
 func init() {
-    // loads values from .env into the system
-    if err := godotenv.Load(); err != nil {
-        log.Print("No .env file found")
-    }
+	if err := godotenv.Load(); err != nil {
+		log.Print("No .env file found")
+	}
 }
-
 
 func NewConfig() (*Config, error) {
 	config := &Config{}
@@ -50,7 +48,6 @@ func NewConfig() (*Config, error) {
 	if err != nil {
 		return nil, err
 	}
-
 
 	return config, nil
 }

@@ -1,0 +1,29 @@
+{{template "base" .}}
+
+{{define "title"}}Создать заметку{{end}}
+
+{{define "main"}}
+    <h2>Создание заметки</h2>
+    <div class='snippet'>
+        <div class='metadata'>
+            <form action="/snippet/create" method="POST">
+                <label for="title">Название заметки</label>
+                <input type="text" id="title" name="title">
+                <br>
+                <br>
+                <label for="content">Содержание заметки</label>
+                <textarea id="content" name="content"></textarea>
+                <br>
+                <br>
+                <label for="expires">Сколько дней хранить заметку?</label>
+                <input type="text" id="expires" name="expires">
+                <br>
+                <br>
+                <button type="submit">Создать</button>
+            </form>
+        </div>
+        <div class='metadata'>
+        
+        </div>
+    </div>
+{{end}}

@@ -4,3 +4,6 @@ app:
 
 http:
   port: '4000'
+
+mysql:
+  timeout: '0.5s'

@@ -13,7 +13,6 @@ func main() {
 		log.Fatalf("Config error: %s", err)
 	}
 
-	// Run
 	app.Run(cfg)
 
 }
