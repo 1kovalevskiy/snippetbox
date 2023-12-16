@@ -5,5 +5,5 @@ app:
 http:
   port: '4000'
 
-mysql:
+sql:
   timeout: '0.5s'

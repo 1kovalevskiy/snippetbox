@@ -11,10 +11,10 @@ import (
 	v1 "github.com/1kovalevskiy/snippetbox/internal/controller/http/v1"
 	middleware "github.com/1kovalevskiy/snippetbox/internal/middleware"
 	"github.com/1kovalevskiy/snippetbox/internal/usecase"
-	"github.com/1kovalevskiy/snippetbox/internal/usecase/repo"
+	repo "github.com/1kovalevskiy/snippetbox/internal/usecase/repo_sqlite"
 	"github.com/1kovalevskiy/snippetbox/pkg/httpserver"
 	"github.com/1kovalevskiy/snippetbox/pkg/logger"
-	mysql_ "github.com/1kovalevskiy/snippetbox/pkg/mysql"
+	sqlite_ "github.com/1kovalevskiy/snippetbox/pkg/sqlite"
 
 	"github.com/go-chi/chi/v5"
 )
@@ -22,15 +22,15 @@ import (
 func Run(cfg *config.Config) {
 	l := logger.NewLogger()
 
-	mysql, err := mysql_.New(cfg.MySQL.URL, cfg.MySQL.Timeout)
+	sqlite, err := sqlite_.New(cfg.SQL.URL, cfg.SQL.Timeout)
 	if err != nil {
-		l.Error("app - Run - mysql.New", err.Error())
+		l.Error("app - Run - sql.New", err.Error())
 		return
 	}
-	defer mysql.Close()
+	defer sqlite.Close()
 
 	snippetUseCase := usecase.New(
-		repo.New(mysql),
+		repo.New(sqlite),
 	)
 
 	router := chi.NewRouter()

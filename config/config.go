@@ -10,9 +10,9 @@ import (
 
 type (
 	Config struct {
-		App   `yaml:"app"`
-		HTTP  `yaml:"http"`
-		MySQL `yaml:"mysql"`
+		App  `yaml:"app"`
+		HTTP `yaml:"http"`
+		SQL  `yaml:"sql"`
 	}
 
 	App struct {
@@ -24,9 +24,9 @@ type (
 		Port string `env-required:"true" yaml:"port" env:"HTTP_PORT"`
 	}
 
-	MySQL struct {
-		Timeout string `env-required:"true" yaml:"timeout" env:"MYSQL_TIMEOUT"`
-		URL     string `env:"MYSQL_URL"`
+	SQL struct {
+		Timeout string `env-required:"true" yaml:"timeout" env:"SQL_TIMEOUT"`
+		URL     string `env:"SQL_URL"`
 	}
 )
 
