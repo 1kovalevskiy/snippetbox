@@ -11,3 +11,15 @@ run:  ### run
 fmt: ### check go fmt
 	gofmt -s -w .
 .PHONY: fmt
+
+linter-golangci: ### check by golangci linter
+	golangci-lint run
+.PHONY: linter-golangci
+
+linter-dotenv: ### check by dotenv linter
+	dotenv-linter
+.PHONY: linter-dotenv
+
+compose-up: ### Run docker-compose
+	docker-compose up --build -d && docker-compose logs -f
+.PHONY: compose-up
